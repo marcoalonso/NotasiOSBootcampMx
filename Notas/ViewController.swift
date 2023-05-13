@@ -104,6 +104,12 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
         
         celda.didTap = {
             print("Se dejo presionada la nota \(self.notas[indexPath.row])")
+
+            let generator = UINotificationFeedbackGenerator()
+            generator.notificationOccurred(.success)
+            
+            let vc = UIActivityViewController(activityItems: ["\(self.notas[indexPath.row].texto ?? "")", UIImage(data: self.notas[indexPath.row].imagen!)!], applicationActivities: nil)
+            self.present(vc, animated: true)
         }
         
         return celda
