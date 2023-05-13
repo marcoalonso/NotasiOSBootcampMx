@@ -75,13 +75,16 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //navegar
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "EditarViewController")
+        let viewController = storyboard.instantiateViewController(withIdentifier: "EditarViewController") as! EditarViewController
+        
         viewController.modalPresentationStyle = .fullScreen
         viewController.modalTransitionStyle = .coverVertical
+        viewController.recibirNota = notas[indexPath.row]
         
         present(viewController, animated: true)
     }
     
+   
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return notas.count
