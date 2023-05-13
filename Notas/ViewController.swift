@@ -6,11 +6,16 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController {
    
-    //Arreglo de notas
     
+    let contexto = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    
+    //Arreglo de notas
+    var notas : [Nota] = []
     
     @IBOutlet weak var notasCollection: UICollectionView!
     
@@ -22,6 +27,23 @@ class ViewController: UIViewController {
         
         notasCollection.delegate = self
         notasCollection.dataSource = self
+    }
+    
+    //Antes de que la vista aparezca
+    override func viewWillAppear(_ animated: Bool) {
+        leerNotas()
+    }
+    
+    func leerNotas(){
+        let solicitud: NSFetchRequest<Nota> = Nota.fetchRequest()
+        do {
+            notas = try contexto.fetch(solicitud)
+            //Recargar el collection
+            notasCollection.reloadData()
+        } catch {
+            print("Debug: error al leer de la BD \(error.localizedDescription)")
+        }
+        
     }
     
     @IBAction func nuevaNotaButton(_ sender: UIButton) {
