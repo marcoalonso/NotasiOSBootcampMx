@@ -27,6 +27,8 @@ class ViewController: UIViewController {
         
         notasCollection.delegate = self
         notasCollection.dataSource = self
+        
+        
     }
     
     //Antes de que la vista aparezca
@@ -64,22 +66,26 @@ class ViewController: UIViewController {
 
 extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return notas.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let celda = collectionView.dequeueReusableCell(withReuseIdentifier: "celda", for: indexPath) as! NotaCell
         
-        celda.textoNota.text = "Ir al cine"
-        celda.fechaNota.text = "15 Mayo 2023, 14:00"
-        celda.imagenNota.image = UIImage(systemName: "note")
+        celda.textoNota.text = notas[indexPath.row].texto
+        
+        celda.imagenNota.image = UIImage(data: notas[indexPath.row].imagen!)
+    
+        
+        let fecha = notas[indexPath.row].fecha!
+        celda.fechaNota.text = fecha.getFormattedDate(format: "dd MMM YYYY, HH:mm")
         
         celda.didTapButtonDelete = {
-            print("boton borrar seleccionado!")
+            print("boton borrar seleccionado! \(self.notas[indexPath.row])")
         }
         
         celda.didTap = {
-            print("Se dejo presionada la nota")
+            print("Se dejo presionada la nota \(self.notas[indexPath.row])")
         }
         
         return celda
