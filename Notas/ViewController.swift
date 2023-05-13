@@ -62,26 +62,41 @@ class ViewController: UIViewController {
     }
     
 
+    func borrarNota(_ nota: Nota){
+        self.contexto.delete(nota)
+        try? contexto.save()
+        leerNotas()
+    }
+    
 }
 
 extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //navegar
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "EditarViewController")
+        viewController.modalPresentationStyle = .fullScreen
+        viewController.modalTransitionStyle = .coverVertical
+        
+        present(viewController, animated: true)
+    }
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return notas.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let celda = collectionView.dequeueReusableCell(withReuseIdentifier: "celda", for: indexPath) as! NotaCell
-        
         celda.textoNota.text = notas[indexPath.row].texto
-        
         celda.imagenNota.image = UIImage(data: notas[indexPath.row].imagen!)
-    
-        
         let fecha = notas[indexPath.row].fecha!
         celda.fechaNota.text = fecha.getFormattedDate(format: "dd MMM YYYY, HH:mm")
         
         celda.didTapButtonDelete = {
             print("boton borrar seleccionado! \(self.notas[indexPath.row])")
+            self.borrarNota(self.notas[indexPath.row])
         }
         
         celda.didTap = {
