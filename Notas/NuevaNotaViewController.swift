@@ -6,11 +6,13 @@
 //
 
 import UIKit
-import CoreData
+//import CoreData
+import RealmSwift
 
 class NuevaNotaViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
-    let contexto = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//    let contexto = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private var realm = try! Realm()
 
     @IBOutlet weak var fechaNota: UIDatePicker!
     @IBOutlet weak var imagenNota: UIImageView!
@@ -50,12 +52,22 @@ class NuevaNotaViewController: UIViewController, UIImagePickerControllerDelegate
             let fechaPicker = fechaNota.date
             
             //Crear la nueva nota a guardar
-            let nuevaNota = Nota(context: self.contexto)
+//            let nuevaNota = Nota(context: self.contexto)
+            
+            realm.beginWrite()
+            let nuevaNota = NotasR()
+            
             nuevaNota.texto = textoNota
             nuevaNota.fecha = fechaPicker
-            nuevaNota.imagen = imagenNota.image?.pngData()
-            //Guardar los cambios al contexto
-            try? contexto.save()
+//            nuevaNota.imagen = imagenNota.image?.pngData()
+            //Convertir la UIImage a data: NSData
+            let data = NSData(data: (imagenNota.image?.pngData())!)
+            nuevaNota.imagen = data
+
+//            try? contexto.save()
+            realm.add(nuevaNota)
+            try! realm.commitWrite()
+            
             
             //Regresar
             dismiss(animated: true)

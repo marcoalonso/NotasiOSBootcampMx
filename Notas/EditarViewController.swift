@@ -6,14 +6,17 @@
 //
 
 import UIKit
-import CoreData
+//import CoreData
+import RealmSwift
 
 class EditarViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
     //Conexion a la bd o al contexto
-    let contexto = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//    let contexto = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private var realm = try! Realm()
     
-    var recibirNota: Nota?
+//    var recibirNota: Nota?
+    var recibirNota: NotasR?
     
     @IBOutlet weak var textoNotaEditar: UITextView!
     @IBOutlet weak var imagenNotaEditar: UIImageView!
@@ -29,7 +32,7 @@ class EditarViewController: UIViewController, UIImagePickerControllerDelegate & 
         if let notaRecibida = recibirNota {
             textoNotaEditar.text = notaRecibida.texto
             fechaNotaEditar.date = notaRecibida.fecha!
-            imagenNotaEditar.image = UIImage(data: notaRecibida.imagen!)
+            imagenNotaEditar.image = UIImage(data: notaRecibida.imagen! as Data)
         }
     }
     
@@ -59,11 +62,21 @@ class EditarViewController: UIViewController, UIImagePickerControllerDelegate & 
     @IBAction func guardarButton(_ sender: UIButton) {
         //que datos voy a guardar
         if let textoNotaEdiata = textoNotaEditar.text, textoNotaEdiata != "" {
-            recibirNota?.texto = textoNotaEdiata
-            recibirNota?.fecha = fechaNotaEditar.date
-            recibirNota?.imagen = imagenNotaEditar.image?.pngData()
-            
-            try? contexto.save()
+//            recibirNota?.texto = textoNotaEdiata
+//            recibirNota?.fecha = fechaNotaEditar.date
+//            recibirNota?.imagen = imagenNotaEditar.image?.pngData()
+//            try? contexto.save()
+            do {
+                try realm.write({
+                    ///Guardar las propiedades modificadas
+                    recibirNota?.texto = textoNotaEdiata
+                    recibirNota?.fecha = fechaNotaEditar.date
+                    let data = NSData(data: (imagenNotaEditar.image?.pngData())!)
+                    recibirNota?.imagen = data
+                })
+            } catch {
+                print("Debug: error \(error.localizedDescription)")
+            }
             
             dismiss(animated: true)
         }

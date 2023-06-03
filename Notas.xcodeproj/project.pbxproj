@@ -20,6 +20,8 @@
 		6C88E0222A0FF4B100321C82 /* NuevaNotaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C88E0212A0FF4B100321C82 /* NuevaNotaViewController.swift */; };
 		6C88E0242A100A2200321C82 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C88E0232A100A2200321C82 /* Date+Extension.swift */; };
 		6C88E0262A100EA800321C82 /* EditarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C88E0252A100EA800321C82 /* EditarViewController.swift */; };
+		6CDD83992A2B916F00EA7024 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6CDD83982A2B916F00EA7024 /* RealmSwift */; };
+		6CDD839B2A2B927C00EA7024 /* NotasR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDD839A2A2B927C00EA7024 /* NotasR.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,7 @@
 		6C88E0212A0FF4B100321C82 /* NuevaNotaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NuevaNotaViewController.swift; sourceTree = "<group>"; };
 		6C88E0232A100A2200321C82 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		6C88E0252A100EA800321C82 /* EditarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditarViewController.swift; sourceTree = "<group>"; };
+		6CDD839A2A2B927C00EA7024 /* NotasR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotasR.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CDD83992A2B916F00EA7024 /* RealmSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +88,7 @@
 				6C88E0212A0FF4B100321C82 /* NuevaNotaViewController.swift */,
 				6C88E0232A100A2200321C82 /* Date+Extension.swift */,
 				6C88E0252A100EA800321C82 /* EditarViewController.swift */,
+				6CDD839A2A2B927C00EA7024 /* NotasR.swift */,
 			);
 			path = Notas;
 			sourceTree = "<group>";
@@ -104,6 +109,9 @@
 			dependencies = (
 			);
 			name = Notas;
+			packageProductDependencies = (
+				6CDD83982A2B916F00EA7024 /* RealmSwift */,
+			);
 			productName = Notas;
 			productReference = 6C88E0012A0FE1FE00321C82 /* Notas.app */;
 			productType = "com.apple.product-type.application";
@@ -132,6 +140,9 @@
 				Base,
 			);
 			mainGroup = 6C88DFF82A0FE1FE00321C82;
+			packageReferences = (
+				6CDD83972A2B916F00EA7024 /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = 6C88E0022A0FE1FE00321C82 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -164,6 +175,7 @@
 				6C88E0092A0FE1FE00321C82 /* ViewController.swift in Sources */,
 				6C88E0052A0FE1FE00321C82 /* AppDelegate.swift in Sources */,
 				6C88E0222A0FF4B100321C82 /* NuevaNotaViewController.swift in Sources */,
+				6CDD839B2A2B927C00EA7024 /* NotasR.swift in Sources */,
 				6C88E0072A0FE1FE00321C82 /* SceneDelegate.swift in Sources */,
 				6C88E0262A100EA800321C82 /* EditarViewController.swift in Sources */,
 				6C88E0242A100A2200321C82 /* Date+Extension.swift in Sources */,
@@ -313,6 +325,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 28Z45T22J2;
@@ -323,6 +336,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -330,6 +344,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rotadevsolutions.Notas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -341,6 +356,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 28Z45T22J2;
@@ -351,6 +367,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -358,6 +375,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rotadevsolutions.Notas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -386,6 +404,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6CDD83972A2B916F00EA7024 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6CDD83982A2B916F00EA7024 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6CDD83972A2B916F00EA7024 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		6C88E00D2A0FE1FE00321C82 /* Notas.xcdatamodeld */ = {
